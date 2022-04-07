@@ -14,12 +14,17 @@
 
 using namespace std;
 unsigned char image[SIZE][SIZE];
-
+unsigned char image2[SIZE][SIZE];
+unsigned char image3[SIZE][SIZE];
+unsigned char new_image[SIZE][SIZE];
 void loadImage ();
 void saveImage ();
 void mirror ();
 void black_white();
-
+void merge();
+void saveNewImage();
+void saveNewImage3();
+void darkenAndLighten();
 int main()
 {
    string choose;
@@ -40,8 +45,14 @@ int main()
             break;
         case 2:
         case 3:
+            merge();
+            saveNewImage();
+            break;
         case 4:
         case 5:
+            darkenAndLighten();
+            saveNewImage3();
+            break;
         case 6:
             mirror();
             break;
@@ -131,4 +142,55 @@ void black_white (){
 
    }
 
+}
+// merge function
+void merge(){
+    char image2FileName[100];
+    cout<<"Please enter name of image file to merge with: ";
+    cin>>image2FileName; // take the name of the image to merge
+    strcat (image2FileName,".bmp");// add the extension
+    readGSBMP(image2FileName,image2);
+    // looping over all indexs
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++) {
+            new_image[i][j] = ((image[i][j] + image2[i][j]) / 2);
+        }
+        }
+
+}
+// for the merge function
+void saveNewImage(){
+    char newImageFileName[100];
+    cout<<"Enter the target image file name: ";
+    cin>>newImageFileName;
+    strcat(newImageFileName,".bmp");// to save the new image
+    writeGSBMP(newImageFileName,new_image);
+
+}
+void saveNewImage3(){
+    char newImageFileName3[100];
+    cout<<"Enter the target image file name: ";
+    cin>>newImageFileName3;
+    strcat (newImageFileName3,".bmp");
+    writeGSBMP(newImageFileName3,image3);
+
+}
+void darkenAndLighten(){
+    char op; // ask the user if darken or lighten
+    cout<<"Do you want to (d)arken or (l)ighten?";
+    cin>>op; // take the option
+    if(op=='l') // if lighten loop over all indexes
+        for(int i=0;i<SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image3[i][j] = ((image[i][j] + 255) / 2);
+            }
+    }
+    // if the darken method
+    else if(op =='d')
+        // loop over all indexes
+    for(int i=0;i<SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            image3[i][j] = (image[i][j]/4);
+        }
+    }
 }

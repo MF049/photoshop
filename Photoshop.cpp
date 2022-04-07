@@ -35,14 +35,13 @@ int main()
    cin >> choose;
     switch (choose) {
         // edit this statement with your function number and mention the function inside its case
-        case "1":
-        case "2":
-        case "3":
-        case "4":
-        case "5":
-        case "6":
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
             mirror();
-
             break;
     }
   saveImage();
@@ -79,41 +78,41 @@ void saveImage () {
 // write your code function under this line pleas
 //and write your names in the top of the program
 void mirror (){
- string choise;
- 
-   cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side? : ";
-   cin >> choise;
-   switch (choise)
-   {
-   case  "l":
-    for (int i = 0; i < SIZE; i++) {
-       for (int j = SIZE; j > 0; j--) {
-           image[i][j] = image[i][SIZE-j];     
-       }
-        }
-      break;
-   case "r" :
-     for (int i = 0; i < SIZE; i++) {
-         for (int j = 0; j < SIZE; j++) {
-           image[i][j] = image[i][SIZE-j];   
-   
+    int choise;
 
-   }
-} 
-break;
-   case "u" :
-    for (int i = 0; i < SIZE; i++) {
-      for (int j = 0; j < SIZE; j++) {
-         image[SIZE-i][SIZE-j] = image[i][SIZE-j]; 
-      }
-       }
-       break;
-   case "d" : 
-      for (int i = 0; i < SIZE; i++) {
-         for (int j = 0; j < SIZE; j++) {
-            image[i][j] =image[SIZE-i][j];     
-         }
-          }
-          break;
-   }
-   
+    cout << "Mirror 1-left, 2-right, 3-upper, 4-down side? : ";
+    cin >> choise;
+    switch (choise)
+    {
+        case  1:
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = SIZE; j > 0; j--) {
+                    image[i][j] = image[i][SIZE-j];
+                }
+            }
+            break;
+        case 2:
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    image[i][j] = image[i][SIZE-j];
+
+
+                }
+            }
+            break;
+        case 3:
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    image[SIZE-i][SIZE-j] = image[i][SIZE-j];
+                }
+            }
+            break;
+        case 4:
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    image[i][j] =image[SIZE-i][j];
+                }
+            }
+            break;
+    }
+}

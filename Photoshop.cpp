@@ -17,11 +17,19 @@ unsigned char image[SIZE][SIZE];
 
 void loadImage ();
 void saveImage ();
-void doSomethingForImage ();
+ 
 
 int main()
 {
+   auto choose;
   loadImage();
+   cin >> choose;
+    switch (choose) {
+        // edit this statment with your function number and mention the function inside its case
+        case 1:
+        case 2:
+        case 3:
+        case 4:
   saveImage();
   return 0;
 }

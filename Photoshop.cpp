@@ -25,7 +25,7 @@ int main()
   loadImage();
    cin >> choose;
     switch (choose) {
-        // edit this statment with your function number and mention the function inside its case
+        // edit this statement with your function number and mention the function inside its case
         case 1:
         case 2:
         case 3:

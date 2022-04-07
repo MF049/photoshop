@@ -3,7 +3,7 @@
 //          bmp colored and grayscale images
 //          Program load a gray image and store in another file
 // Author:  Mohammad FathElrahman Osman
-// Date:    30 March 2018
+// Date:    7 April 2022
 // Version: 1.0
 
 #include <iostream>

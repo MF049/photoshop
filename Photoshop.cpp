@@ -28,10 +28,10 @@ int main()
   cout << "1-black and white "<<endl;
   cout << "2-invert image "<<endl;
   cout << "3-merge two images "<<endl;
-  cout << "4- rotate image "<<endl;
+  cout << "4-rotate image "<<endl;
   cout << "5-darken and Lighten Image "<<endl;
   cout << "6-mirror image "<<endl;
-  cout << "choose a filter";
+  cout << "choose a filter : ";
    cin >> choose;
     switch (choose) {
         // edit this statement with your function number and mention the function inside its case

@@ -18,7 +18,7 @@ unsigned char image[SIZE][SIZE];
 void loadImage ();
 void saveImage ();
 void mirror ();
- 
+void black_white();
 
 int main()
 {
@@ -36,6 +36,8 @@ int main()
     switch (choose) {
         // edit this statement with your function number and mention the function inside its case
         case 1:
+            black_white();
+            break;
         case 2:
         case 3:
         case 4:
@@ -115,4 +117,18 @@ void mirror (){
             }
             break;
     }
+}
+void black_white (){
+      for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if(image[i][j] > 133) {
+                image[i][j] = 255;
+            } else{
+                image[i][j] = 0;
+            }
+
+        }
+
+   }
+
 }

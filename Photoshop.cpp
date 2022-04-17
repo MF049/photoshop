@@ -25,6 +25,9 @@ void merge();
 void saveNewImage();
 void saveNewImage3();
 void darkenAndLighten();
+void roto();
+void chose();
+void invert();
 int main()
 {
    string choose;
@@ -44,6 +47,8 @@ int main()
             black_white();
             break;
         case 2:
+            invert();
+            break;
         case 3:
             merge();
             saveNewImage();
@@ -56,6 +61,11 @@ int main()
         case 6:
             mirror();
             break;
+        case 7:
+            chose ();
+            roto  ();
+
+
     }
   saveImage();
   return 0;
@@ -194,3 +204,85 @@ void darkenAndLighten(){
         }
     }
 }
+
+
+void roto(){
+for (int i = 0 ; i < SIZE ; i++){
+ for(int j = 0 ; j < i ; j++)
+ swap(image[i][j],image[j][i]);
+
+}
+
+for (int i = 0 ; i < SIZE; i++){
+ for(int j = 0 ; j <SIZE/ 2 ; j++)
+ swap(image[i][j],image[i][SIZE-j]);
+
+}
+
+}
+
+void chose(){
+
+int n ;
+cout<<"do you want to rotate 90,180,or 270?";
+cin>>n;
+if(n ==90){
+    roto();
+
+}
+else if(n ==180){
+    roto();
+    roto();
+
+}
+
+else if(n ==270){
+    roto();
+    roto();
+    roto();
+
+}
+else {
+        cout<<"plz enter valid num.\n";
+chose();
+        }
+
+
+
+
+
+
+
+}
+
+void invert() {
+  for (int i = 0; i < SIZE; i++) {
+    for (int j = 0; j< SIZE; j++) {
+
+// Example code to convert to BW the image
+   //A better version should NOt use 127 but the
+   //average of the pixels
+
+z = image[i][j];
+if (z <127 )
+{
+   y = 127 -  z;
+   y +=127 ;
+}
+
+else if (z >127 )
+{
+   y = z - 127;
+   y = 127 - y;
+}
+else if (z==127){
+
+y = 127;
+}
+image[i][j]=y;
+
+// do something with the image
+    }
+  }
+}
+

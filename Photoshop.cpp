@@ -28,19 +28,36 @@ void darkenAndLighten();
 void roto();
 void chose();
 void invert();
+void grayScale ();
+void colored();
 int main()
 {
-   string choose;
-  loadImage();
-  //under this line cout your filters numbers ... the varible "choose" its for the user to pick up filter number
-  cout << "1-black and white "<<endl;
-  cout << "2-invert image "<<endl;
-  cout << "3-merge two images "<<endl;
-  cout << "4-rotate image "<<endl;
-  cout << "5-darken and Lighten Image "<<endl;
-  cout << "6-mirror image "<<endl;
-  cout << "choose a filter : ";
-   cin >> choose;
+    int filterType;
+    cout << "1-gray scale or 2-colored image :";
+    cin >> filterType;
+    switch (filterType) {
+        case 1:
+            grayScale();
+            break;
+        case 2 :
+            colored();
+            break;
+    }
+
+}
+void grayScale () {
+
+    int choose;
+    loadImage();
+    //under this line cout your filters numbers ... the varible "choose" its for the user to pick up filter number
+    cout << "1-black and white " << endl;
+    cout << "2-invert image " << endl;
+    cout << "3-merge two images " << endl;
+    cout << "4-rotate image " << endl;
+    cout << "5-darken and Lighten Image " << endl;
+    cout << "6-mirror image " << endl;
+    cout << "choose a filter : ";
+    cin >> choose;
     switch (choose) {
         // edit this statement with your function number and mention the function inside its case
         case 1:
@@ -62,39 +79,36 @@ int main()
             mirror();
             break;
         case 7:
-            chose ();
-            roto  ();
-
+            chose();
+            roto();
 
     }
-  saveImage();
-  return 0;
 }
 
 //_________________________________________
 void loadImage () {
-   char imageFileName[100];
+    char imageFileName[100];
 
-   // Get gray scale image file name
-   cout << "Enter the source image file name: ";
-   cin >> imageFileName;
+    // Get gray scale image file name
+    cout << "Enter the source image file name: ";
+    cin >> imageFileName;
 
-   // Add to it .bmp extension and load image
-   strcat (imageFileName, ".bmp");
-   readGSBMP(imageFileName, image);
+    // Add to it .bmp extension and load image
+    strcat (imageFileName, ".bmp");
+    readGSBMP(imageFileName, image);
 }
 
 //_________________________________________
 void saveImage () {
-   char imageFileName[100];
+    char imageFileName[100];
 
-   // Get gray scale image target file name
-   cout << "Enter the target image file name: ";
-   cin >> imageFileName;
+    // Get gray scale image target file name
+    cout << "Enter the target image file name: ";
+    cin >> imageFileName;
 
-   // Add to it .bmp extension and load image
-   strcat (imageFileName, ".bmp");
-   writeGSBMP(imageFileName, image);
+    // Add to it .bmp extension and load image
+    strcat (imageFileName, ".bmp");
+    writeGSBMP(imageFileName, image);
 }
 
 //_________________________________________
@@ -140,7 +154,7 @@ void mirror (){
     }
 }
 void black_white (){
-      for (int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             if(image[i][j] > 133) {
                 image[i][j] = 255;
@@ -150,7 +164,7 @@ void black_white (){
 
         }
 
-   }
+    }
 
 }
 // merge function
@@ -165,7 +179,7 @@ void merge(){
         for (int j = 0; j< SIZE; j++) {
             new_image[i][j] = ((image[i][j] + image2[i][j]) / 2);
         }
-        }
+    }
 
 }
 // for the merge function
@@ -194,58 +208,58 @@ void darkenAndLighten(){
             for (int j = 0; j < SIZE; j++) {
                 image3[i][j] = ((image[i][j] + 255) / 2);
             }
-    }
-    // if the darken method
+        }
+        // if the darken method
     else if(op =='d')
         // loop over all indexes
-    for(int i=0;i<SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            image3[i][j] = (image[i][j]/4);
+        for(int i=0;i<SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image3[i][j] = (image[i][j]/4);
+            }
         }
-    }
 }
 
 
 void roto(){
-for (int i = 0 ; i < SIZE ; i++){
- for(int j = 0 ; j < i ; j++)
- swap(image[i][j],image[j][i]);
+    for (int i = 0 ; i < SIZE ; i++){
+        for(int j = 0 ; j < i ; j++)
+            swap(image[i][j],image[j][i]);
 
-}
+    }
 
-for (int i = 0 ; i < SIZE; i++){
- for(int j = 0 ; j <SIZE/ 2 ; j++)
- swap(image[i][j],image[i][SIZE-j]);
+    for (int i = 0 ; i < SIZE; i++){
+        for(int j = 0 ; j <SIZE/ 2 ; j++)
+            swap(image[i][j],image[i][SIZE-j]);
 
-}
+    }
 
 }
 
 void chose(){
 
-int n ;
-cout<<"do you want to rotate 90,180,or 270?";
-cin>>n;
-if(n ==90){
-    roto();
+    int n ;
+    cout<<"do you want to rotate 90,180,or 270?";
+    cin>>n;
+    if(n ==90){
+        roto();
 
-}
-else if(n ==180){
-    roto();
-    roto();
+    }
+    else if(n ==180){
+        roto();
+        roto();
 
-}
+    }
 
-else if(n ==270){
-    roto();
-    roto();
-    roto();
+    else if(n ==270){
+        roto();
+        roto();
+        roto();
 
-}
-else {
+    }
+    else {
         cout<<"plz enter valid num.\n";
-chose();
-        }
+        chose();
+    }
 
 
 
@@ -256,33 +270,33 @@ chose();
 }
 
 void invert() {
-  for (int i = 0; i < SIZE; i++) {
-    for (int j = 0; j< SIZE; j++) {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++) {
 
 // Example code to convert to BW the image
-   //A better version should NOt use 127 but the
-   //average of the pixels
+            //A better version should NOt use 127 but the
+            //average of the pixels
 
-z = image[i][j];
-if (z <127 )
-{
-   y = 127 -  z;
-   y +=127 ;
-}
-
-else if (z >127 )
-{
-   y = z - 127;
-   y = 127 - y;
-}
-else if (z==127){
-
-y = 127;
-}
-image[i][j]=y;
+//z = image[i][j];
+//if (z <127 )
+//{
+//   y = 127 -  z;
+//   y +=127 ;
+//}
+//
+//else if (z >127 )
+//{
+//   y = z - 127;
+//   y = 127 - y;
+//}
+//else if (z==127){
+//
+//y = 127;
+//}
+//image[i][j]=y;
 
 // do something with the image
+        }
     }
-  }
 }
 

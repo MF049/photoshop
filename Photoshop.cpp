@@ -21,6 +21,7 @@ void loadImage ();
 void saveImage ();
 void mirror ();
 void black_white();
+void flipImage ();
 void merge();
 void saveNewImage();
 void saveNewImage3();
@@ -50,13 +51,14 @@ void grayScale () {
     int choose;
     loadImage();
     //under this line cout your filters numbers ... the varible "choose" its for the user to pick up filter number
-    cout << "1-black and white " << endl;
-    cout << "2-invert image " << endl;
-    cout << "3-merge two images " << endl;
-    cout << "4-rotate image " << endl;
-    cout << "5-darken and Lighten Image " << endl;
-    cout << "6-mirror image " << endl;
-    cout << "choose a filter : ";
+    cout << "1-black and white \n
+    2-invert image \n 
+    3-merge two images \n  
+    4-rotate image \n
+    5-darken and Lighten Image  \n
+    6-mirror image \n
+    8-flip image \n
+    choose a filter : ";
     cin >> choose;
     switch (choose) {
         // edit this statement with your function number and mention the function inside its case
@@ -81,6 +83,9 @@ void grayScale () {
         case 7:
             chose();
             roto();
+        case 8:
+        flipImage();
+        break;    
 
     }
 }
@@ -268,34 +273,47 @@ void chose(){
 
 
 }
+void flipImage (){
+     int choise;
+    cout<<"1-vertically : \n 
+    2-horizontally :" ;
+    cin >> choise;
+    switch ( choise)
+    {
+    case 1:
+    int k = 0;
+  for (int i = SIZE; i > 0; i--) {
+    int s =0;
+     for (int j = 0; j < SIZE; j++) {    
+        newimage[k][s] = image[i][j];
+        s++;
+       }
+     k++;
+   }     
+        break;
+    
+    case 2:
+int k = 0;
+    for (int i = 0; i < SIZE; i++) {
+         int s =0;
+        for (int j = SIZE; j > 0; j--) {    
+
+                newimage[k][s] = image[i][j];
+                    s++;
+                        }
+                k++;
+            }
+        break;
+    }
+     saveNewImage();
+}
+ 
+
 
 void invert() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j< SIZE; j++) {
 
-// Example code to convert to BW the image
-            //A better version should NOt use 127 but the
-            //average of the pixels
-
-//z = image[i][j];
-//if (z <127 )
-//{
-//   y = 127 -  z;
-//   y +=127 ;
-//}
-//
-//else if (z >127 )
-//{
-//   y = z - 127;
-//   y = 127 - y;
-//}
-//else if (z==127){
-//
-//y = 127;
-//}
-//image[i][j]=y;
-
-// do something with the image
         }
     }
 }

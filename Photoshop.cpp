@@ -16,7 +16,9 @@ using namespace std;
 unsigned char image[SIZE][SIZE];
 unsigned char image2[SIZE][SIZE];
 unsigned char image3[SIZE][SIZE];
-unsigned char new_image[SIZE][SIZE];
+unsigned char newImage[SIZE][SIZE];
+unsigned char rgbImage [SIZE][SIZE][RGB];
+unsigned char newRgbImage [SIZE][SIZE][RGB];
 void loadImage ();
 void saveImage ();
 void mirror ();
@@ -232,29 +234,29 @@ void merge(){
     // looping over all indexs
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j< SIZE; j++) {
-            new_image[i][j] = ((image[i][j] + image2[i][j]) / 2);
+            newImage[i][j] = ((image[i][j] + image2[i][j]) / 2);
         }
     }
 
 }
 // for the merge function
 void saveNewRgbImage () {
-    char newimageFileName[100];
+    char newImageFileName[100];
 
     // Get gray scale image target file name
     cout << "Enter the target image file name: ";
-    cin >> newimageFileName;
+    cin >> newImageFileName;
 
     // Add to it .bmp extension and load image
-    strcat (newimageFileName, ".bmp");
-    writeRGBBMP(newimageFileName, newimage);
+    strcat (newImageFileName, ".bmp");
+    writeRGBBMP(newImageFileName, newImage);
 }
 void saveNewImage(){
     char newImageFileName[100];
     cout<<"Enter the target image file name: ";
     cin>>newImageFileName;
     strcat(newImageFileName,".bmp");// to save the new image
-    writeGSBMP(newImageFileName,new_image);
+    writeGSBMP(newImageFileName,newImage);
 
 }
 void saveNewImage3(){
@@ -340,7 +342,7 @@ void flipImage (){
   for (int i = SIZE; i > 0; i--) {
     int s =0;
      for (int j = 0; j < SIZE; j++) {    
-        newimage[k][s] = image[i][j];
+        newImage[k][s] = image[i][j];
         s++;
        }
      k++;
@@ -353,7 +355,7 @@ int k = 0;
          int s =0;
         for (int j = SIZE; j > 0; j--) {    
 
-                newimage[k][s] = image[i][j];
+                newImage[k][s] = image[i][j];
                     s++;
                         }
                 k++;
@@ -386,9 +388,9 @@ void  detect_Image_edges (){
            int x = (image[i-1][j]+image[i+1][j]-2*image[i][j]);
            int y = (image[i][j-1]+image[i][j+1]-2*image[i][j]);
            if(i-1 >0 || i+1<255 || j-1 >0 || j+1<255 )
-           newimage[i][j] = 255-x-y;
+           newImage[i][j] = 255-x-y;
            else
-           newimage[i][j]= 255;
+           newImage[i][j]= 255;
        }
    }
    saveNewImage();

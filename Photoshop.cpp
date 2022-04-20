@@ -56,11 +56,11 @@ void grayScale () {
     cout <<"1-black and white \n
             2-invert image \n 
             3-merge two images \n  
-            4-rotate image \n
+            4-flip image \n
             5-darken and Lighten Image  \n
             6-mirror image \n
             7-rotate image \n
-            8-flip image \n
+            8- \n
             9-detect image edges \n
             choose a filter : ";
     cin >> choose;
@@ -77,6 +77,8 @@ void grayScale () {
             saveNewImage();
             break;
         case 4:
+            flipImage();
+            break;
         case 5:
             darkenAndLighten();
             saveNewImage3();
@@ -88,8 +90,7 @@ void grayScale () {
             chose();
             roto();
         case 8:
-        flipImage();
-        break;  
+          
         case 9:
         detect_Image_edges();
         break;

@@ -1,11 +1,11 @@
-// Program: photoshop
-// Purpose: Demonstrate use of bmplip for handling
-//          bmp colored and grayscale images
-//          Program load a gray image and store in another file
-// Author:  Mohammad FathElrahman Osman
-// Date:    7 April 2022
-// Version: 1.0
-// plz add ur names above .... and  ur filters choices in the switch statement
+// FCI - Programming 1 - 2022 - Assignment 3
+// Program Name: photoshop
+// Last Modification Date: 7/4/2022
+// Author 1 and ID  and Group: Dina Maher Fadl Ali - 20210547 - S15 S16
+// Author 1 and ID  and Group: Youssef Hamed Mohammed Hamed - 20210494 - S15 S16
+// Author 1 and ID  and Group: Mohamed FathElrahman Osman - 20210702- S15 S16
+// Teaching Assistant: Yousrs
+// Purpose: Add filters to the image.
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -28,6 +28,7 @@ void saveNewImage3();
 void darkenAndLighten();
 void roto();
 void chose();
+double avg();
 void invert();
 void grayScale ();
 void colored();

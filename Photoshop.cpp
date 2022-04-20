@@ -30,6 +30,7 @@ void roto();
 void chose();
 double avg();
 void invert();
+void  detect_Image_edges ();
 void grayScale ();
 void colored();
 int main()
@@ -52,14 +53,16 @@ void grayScale () {
     int choose;
     loadImage();
     //under this line cout your filters numbers ... the varible "choose" its for the user to pick up filter number
-    cout << "1-black and white \n
-    2-invert image \n 
-    3-merge two images \n  
-    4-rotate image \n
-    5-darken and Lighten Image  \n
-    6-mirror image \n
-    8-flip image \n
-    choose a filter : ";
+    cout <<"1-black and white \n
+            2-invert image \n 
+            3-merge two images \n  
+            4-rotate image \n
+            5-darken and Lighten Image  \n
+            6-mirror image \n
+            7-rotate image \n
+            8-flip image \n
+            9-detect image edges \n
+            choose a filter : ";
     cin >> choose;
     switch (choose) {
         // edit this statement with your function number and mention the function inside its case
@@ -86,7 +89,10 @@ void grayScale () {
             roto();
         case 8:
         flipImage();
-        break;    
+        break;  
+        case 9:
+        detect_Image_edges();
+        break;
 
     }
 }
@@ -159,18 +165,32 @@ void mirror (){
             break;
     }
 }
-void black_white (){
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            if(image[i][j] > 133) {
-                image[i][j] = 255;
-            } else{
-                image[i][j] = 0;
-            }
+double avg(){
+    double sum = 0;
+    int limit =0 ;
+//    Nested loop for calculating the required sum
 
+    for (;limit <SIZE; limit++){
+        for (int col =0 ; col <SIZE; col++){
+                sum += image[limit][col];
+            }
         }
 
-    }
+//    calculating the result of the sum/count
+    double result = sum/ count ;
+    return result;
+}
+void black_white (){
+    int limit =0;
+    for (; limit<SIZE; limit++){
+        for (int color =0 ; color <SIZE; color++){
+                if (image[limit][color] > avg()) {
+                    image[limit][color] = 255;
+                } else if (image[limit][color] < avg()) {
+                    image[limit][color] = 0;
+                }
+            }
+        }
 
 }
 // merge function
@@ -267,12 +287,6 @@ void chose(){
         chose();
     }
 
-
-
-
-
-
-
 }
 void flipImage (){
      int choise;
@@ -308,14 +322,35 @@ int k = 0;
     }
      saveNewImage();
 }
- 
-
-
 void invert() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j< SIZE; j++) {
 
         }
     }
+}
+void  detect_Image_edges (){
+        int limit =0;
+    for (; limit<SIZE; limit++){
+        for (int color =0 ; color <SIZE; color++){
+                if (image[limit][color] > avg()) {
+                    image[limit][color] = 255;
+                } else if (image[limit][color] < avg()) {
+                    image[limit][color] = 0;
+                }
+            }
+        }
+        
+   for(int i =0; i<SIZE; i++){
+       for(int j = 0; j<SIZE; j++){
+           int x = (image[i-1][j]+image[i+1][j]-2*image[i][j]);
+           int y = (image[i][j-1]+image[i][j+1]-2*image[i][j]);
+           if(i-1 >0 || i+1<255 || j-1 >0 || j+1<255 )
+           newimage[i][j] = 255-x-y;
+           else
+           newimage[i][j]= 255;
+       }
+   }
+   saveNewImage();
 }
 

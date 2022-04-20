@@ -33,6 +33,9 @@ void invert();
 void  detect_Image_edges ();
 void grayScale ();
 void colored();
+void loadRgbImage ();
+void saveRgbImage();
+void saveNewRgbImage ();
 int main()
 {
     int filterType;
@@ -99,6 +102,18 @@ void grayScale () {
 }
 
 //_________________________________________
+void loadRgbImage () {
+    char imageFileName[100];
+
+    // Get gray scale image file name
+    cout << "Enter the source image file name: ";
+    cin >> imageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat (imageFileName, ".bmp");
+    readRGBBMP(imageFileName, image);
+
+}
 void loadImage () {
     char imageFileName[100];
 
@@ -112,6 +127,19 @@ void loadImage () {
 }
 
 //_________________________________________
+void saveRgbImage(){
+    char imageFileName[100];
+
+    // Get gray scale image target file name
+    cout << "Enter the target image file name: ";
+    cin >> imageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat (imageFileName, ".bmp");
+    writeRGBBMP(imageFileName, image);
+
+
+}
 void saveImage () {
     char imageFileName[100];
 
@@ -210,6 +238,17 @@ void merge(){
 
 }
 // for the merge function
+void saveNewRgbImage () {
+    char newimageFileName[100];
+
+    // Get gray scale image target file name
+    cout << "Enter the target image file name: ";
+    cin >> newimageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat (newimageFileName, ".bmp");
+    writeRGBBMP(newimageFileName, newimage);
+}
 void saveNewImage(){
     char newImageFileName[100];
     cout<<"Enter the target image file name: ";

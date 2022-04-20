@@ -305,7 +305,7 @@ void flipImage (){
         s++;
        }
      k++;
-   }     
+   }  saveNewImage();   
         break;
     
     case 2:
@@ -318,10 +318,10 @@ int k = 0;
                     s++;
                         }
                 k++;
-            }
+            }saveNewImage();
         break;
     }
-     saveNewImage();
+      
 }
 void invert() {
     for (int i = 0; i < SIZE; i++) {

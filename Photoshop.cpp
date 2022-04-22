@@ -39,6 +39,9 @@ void loadRgbImage ();
 void saveRgbImage();
 void saveNewRgbImage ();
 void blur_image();
+void shrink2();
+void shrink3();
+void shrink4();
 int main()
 {
     int filterType;
@@ -57,6 +60,7 @@ int main()
 void grayScale () {
 
     int choose;
+    string rat;
     loadImage();
     //under this line cout your filters numbers ... the varible "choose" its for the user to pick up filter number
     cout <<"1-black and white \n
@@ -67,7 +71,8 @@ void grayScale () {
             6-mirror image \n
             7-rotate image \n
             8- \n
-            9-detect image edges \n
+            9-Shrink Image\n
+            10-detect image edges \n
             12-Blur Image\n
             choose a filter : ";
     cin >> choose;
@@ -96,9 +101,30 @@ void grayScale () {
         case 7:
             chose();
             roto();
-        case 8:
-
         case 9:
+            cout<<"Shrink to (1/2), (1/3) or (1/4)?:";
+            cin>>rat;
+            if(rat == "1/4"){
+            shrink4();
+            saveNewImage3();
+            exit(0);
+            }
+            else if(rat == "1/3"){
+            shrink3();
+            saveNewImage3();
+            exit(0);
+            }
+            else if(rat == "1/2"){
+            shrink2();
+            saveNewImage3();
+            exit(0);
+            }
+            else{
+            cout<<"Plz enter a valid num";}
+            exit(0);
+            }
+            break;
+        case 10:
         detect_Image_edges();
         break;
         case 12:
@@ -411,6 +437,33 @@ void blur_image(){
                            +image[i-1][j-1]+image[i-1][j]+image[i-1][j+1]+image[i-1][j+2]+image[i][j-2]+image[i][j-1]+image[i][j]+image[i][j+1]
                            +image[i][j+2]+image[i+1][j-2]+image[i+1][j-1]+image[i+1][j]+image[i+1][j+1]+image[i+1][j+2]+image[i+2][j-2]+image[i+2][j-1]
                            +image[i+2][j]+image[i+2][j+1]+image[i+2][j+2])/26;
+        }
+    }
+}
+
+// shrink image to 1/4 it’s original
+void shrink4(){
+    for(int i=0; i < SIZE; i++){ // loop for every pixel in the image
+        for(int j = 0; j < SIZE; j++){
+            image3[i/4][j/4] =(image[i+1][j] + image[i][j+1] + image[i+1][j+1] + image[i][j])/4;
+        }
+    }
+}
+
+// shrink image to 1/2 it’s original
+void shrink2(){
+    for(int i=0;i<SIZE; i++) { // loop for every pixel in the image
+        for (int j = 0; j < SIZE; j++) {
+            image3[i / 2][j / 2] = (image[i + 1][j] + image[i][j + 1] + image[i + 1][j + 1] + image[i][j]) / 4;
+        }
+    }
+}
+
+// shrink image to 1/3 it’s original
+void shrink3(){
+    for(int i=0;i<SIZE; i++) { // loop for every pixel in the image
+        for (int j = 0; j < SIZE; j++) {
+            image3[i / 3][j / 3] = (image[i + 1][j] + image[i][j + 1] + image[i + 1][j + 1] + image[i][j]) / 4;
         }
     }
 }

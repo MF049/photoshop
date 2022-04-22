@@ -1,24 +1,24 @@
+
 // FCI - Programming 1 - 2022 - Assignment 3
 // Program Name: photoshop
-// Last Modification Date: 7/4/2022
-// Author 1 and ID  and Group: Dina Maher Fadl Ali - 20210547 - S15 S16
-// Author 1 and ID  and Group: Youssef Hamed Mohammed Hamed - 20210494 - S15 S16
-// Author 1 and ID  and Group: Mohamed FathElrahman Osman - 20210702- S15 S16
-// Teaching Assistant: Yousrs
-// Purpose: Add filters to the image.
+// Last Modification Date: 20/4/2022
+// Author 1 and ID  and Group: Dina Maher Fadl Ali - 20210547 - S16
+// Author 1 and ID  and Group: Youssef Hamed Mohammed Hamed - 20210494 - S15-S16
+// Author 1 and ID  and Group: Mohamed FathElrahman Osman - 20210702- S15-S16
+// Teaching Assistant: Yousrs & Nesma
+// Purpose: Demonstrate use of bmplip for handling bmp colored and grayscale images program load a gray image and store it in another file.
 #include <iostream>
 #include <fstream>
 #include <cstring>
 #include <cmath>
 #include "bmplib.cpp"
-
 using namespace std;
 unsigned char image[SIZE][SIZE];
 unsigned char image2[SIZE][SIZE];
 unsigned char image3[SIZE][SIZE];
 unsigned char newImage[SIZE][SIZE];
-unsigned char rgbImage [SIZE][SIZE][RGB];
-unsigned char newRgbImage [SIZE][SIZE][RGB];
+unsigned char rgbImage[SIZE][SIZE][RGB];
+unsigned char newRgbImage[SIZE][SIZE][RGB];
 void loadImage ();
 void saveImage ();
 void mirror ();
@@ -42,10 +42,9 @@ void blur_image();
 void shrink2();
 void shrink3();
 void shrink4();
-int main()
-{
+int main() {
     int filterType;
-    cout << "1-gray scale or 2-colored image :";
+    cout << "1-gray scale or 2-colored image:";
     cin >> filterType;
     switch (filterType) {
         case 1:
@@ -55,141 +54,124 @@ int main()
             colored();
             break;
     }
-
 }
-void grayScale () {
-
-    int choose;
-    string rat;
-    loadImage();
-    //under this line cout your filters numbers ... the varible "choose" its for the user to pick up filter number
-    cout <<"1-black and white \n
-            2-invert image \n
-            3-merge two images \n
-            4-flip image \n
-            5-darken and Lighten Image  \n
-            6-mirror image \n
-            7-rotate image \n
-            8- \n
-            9-Shrink Image\n
-            10-detect image edges \n
-            12-Blur Image\n
-            choose a filter : ";
-    cin >> choose;
-    switch (choose) {
-        // edit this statement with your function number and mention the function inside its case
-        case 1:
-            black_white();
-            break;
-        case 2:
-            invert();
-            break;
-        case 3:
-            merge();
-            saveNewImage();
-            break;
-        case 4:
-            flipImage();
-            break;
-        case 5:
-            darkenAndLighten();
-            saveNewImage3();
-            break;
-        case 6:
-            mirror();
-            break;
-        case 7:
-            chose();
-            roto();
-        case 9:
-            cout<<"Shrink to (1/2), (1/3) or (1/4)?:";
-            cin>>rat;
-            if(rat == "1/4"){
-            shrink4();
-            saveNewImage3();
-            exit(0);
-            }
-            else if(rat == "1/3"){
-            shrink3();
-            saveNewImage3();
-            exit(0);
-            }
-            else if(rat == "1/2"){
-            shrink2();
-            saveNewImage3();
-            exit(0);
-            }
-            else{
-            cout<<"Plz enter a valid num";}
-            exit(0);
-            }
-            break;
-        case 10:
-        detect_Image_edges();
-        break;
-        case 12:
-            blur_image();
-            saveImage();
-            break;
-
-
+    void grayScale() {
+        int choose;
+        string rat;
+        loadImage();
+        cout << "1- Black and White" << endl
+             << "2- Invert Image\n"
+             << "3- Merge Filter\n"
+             << "4- Flip Image\n"
+             << "5- Darken and Lighten Image\n"
+             << "6- Rotate Image\n"
+             << "7- Detect Image Edges\n"
+             << "8- Enlarge Image\n"
+             << "9- Shrink Image\n"
+             << "10- Mirror 1/2 Image\n"
+             << "11- Shuffle Image\n"
+             << "12- Blur Image\n"
+             << "13- Save the image to a file\n"
+             << "0- Exit\n"
+             << "choose a filter: ";
+        cin >> choose;
+        switch (choose) {
+            case 1:
+                black_white();
+                break;
+            case 2:
+                invert();
+                break;
+            case 3:
+                merge();
+                saveNewImage();
+                break;
+            case 4:
+                flipImage();
+                break;
+            case 5:
+                darkenAndLighten();
+                saveNewImage3();
+                break;
+            case 6:
+                mirror();
+                break;
+            case 7:
+                chose();
+                roto();
+                break;
+            case 9:
+                cout << "Shrink to (1/2), (1/3) or (1/4)?:";
+                cin >> rat;
+                if (rat == "1/4") {
+                    shrink4();
+                    saveNewImage3();
+                    exit(0);
+                } else if (rat == "1/3") {
+                    shrink3();
+                    saveNewImage3();
+                    exit(0);
+                } else if (rat == "1/2") {
+                    shrink2();
+                    saveNewImage3();
+                    exit(0);
+                } else {
+                    cout << "Plz enter a valid num";
+                }
+                break;
+            case 10:
+                detect_Image_edges();
+                break;
+            case 12:
+                blur_image();
+                saveImage();
+                break;
+        }
     }
-}
-
-//_________________________________________
+//___________________________________________________
 void loadRgbImage () {
     char imageFileName[100];
-
     // Get gray scale image file name
     cout << "Enter the source image file name: ";
     cin >> imageFileName;
-
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
-    readRGBBMP(imageFileName, image);
-
+    readRGBBMP(imageFileName, rgbImage);
 }
+//___________________________________________________
 void loadImage () {
     char imageFileName[100];
-
     // Get gray scale image file name
     cout << "Enter the source image file name: ";
     cin >> imageFileName;
-
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
     readGSBMP(imageFileName, image);
 }
-
-//_________________________________________
+//___________________________________________________
 void saveRgbImage(){
     char imageFileName[100];
-
     // Get gray scale image target file name
     cout << "Enter the target image file name: ";
     cin >> imageFileName;
-
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
-    writeRGBBMP(imageFileName, image);
-
-
+    writeRGBBMP(imageFileName, rgbImage);
 }
+//_____________________________________________________
 void saveImage () {
     char imageFileName[100];
 
     // Get gray scale image target file name
     cout << "Enter the target image file name: ";
     cin >> imageFileName;
-
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
     writeGSBMP(imageFileName, image);
 }
 
 //_________________________________________
-// write your code function under this line pleas
-//and write your names in the top of the program
+
 void mirror (){
     int choise;
 
@@ -236,9 +218,9 @@ double avg(){
 
     for (;limit <SIZE; limit++){
         for (int col =0 ; col <SIZE; col++){
-                sum += image[limit][col];
-            }
+            sum += image[limit][col];
         }
+    }
 
 //    calculating the result of the sum/count
     double result = sum/ count ;
@@ -248,14 +230,13 @@ void black_white (){
     int limit =0;
     for (; limit<SIZE; limit++){
         for (int color =0 ; color <SIZE; color++){
-                if (image[limit][color] > avg()) {
-                    image[limit][color] = 255;
-                } else if (image[limit][color] < avg()) {
-                    image[limit][color] = 0;
-                }
+            if (image[limit][color] > avg()) {
+                image[limit][color] = 255;
+            } else if (image[limit][color] < avg()) {
+                image[limit][color] = 0;
             }
         }
-
+    }
 }
 // merge function
 void merge(){
@@ -282,7 +263,7 @@ void saveNewRgbImage () {
 
     // Add to it .bmp extension and load image
     strcat (newImageFileName, ".bmp");
-    writeRGBBMP(newImageFileName, newImage);
+    writeRGBBMP(newImageFileName, newRgbImage);
 }
 void saveNewImage(){
     char newImageFileName[100];
@@ -325,15 +306,12 @@ void roto(){
     for (int i = 0 ; i < SIZE ; i++){
         for(int j = 0 ; j < i ; j++)
             swap(image[i][j],image[j][i]);
-
     }
-
     for (int i = 0 ; i < SIZE; i++){
         for(int j = 0 ; j <SIZE/ 2 ; j++)
             swap(image[i][j],image[i][SIZE-j]);
 
     }
-
 }
 
 void chose(){
@@ -341,17 +319,17 @@ void chose(){
     int n ;
     cout<<"do you want to rotate 90,180,or 270?";
     cin>>n;
-    if(n ==90){
+    if(n == 90){
         roto();
 
     }
-    else if(n ==180){
+    else if(n == 180){
         roto();
         roto();
 
     }
 
-    else if(n ==270){
+    else if(n == 270){
         roto();
         roto();
         roto();
@@ -364,39 +342,39 @@ void chose(){
 
 }
 void flipImage (){
-     int choise;
-    cout<<"1-vertically : \n
-    2-horizontally :" ;
+    char choise;
+    cout<<"1-vertically : \n"
+    <<"2-horizontally :";
     cin >> choise;
-    switch ( choise)
-    {
-    case 1:
-    int k = 0;
-  for (int i = SIZE; i > 0; i--) {
-    int s =0;
-     for (int j = 0; j < SIZE; j++) {
-        newImage[k][s] = image[i][j];
-        s++;
-       }
-     k++;
-   }  saveNewImage();
-        break;
-
-    case 2:
-int k = 0;
-    for (int i = 0; i < SIZE; i++) {
-         int s =0;
-        for (int j = SIZE; j > 0; j--) {
+    if(choise == '1') {
+        int k = 0;
+        for (int i = SIZE; i > 0; i--) {
+            int s = 0;
+            for (int j = 0; j < SIZE; j++) {
+                newImage[k][s] = image[i][j];
+                s++;
+            }
+            k++;
+        }
+        saveNewImage();
+        exit(0);
+    }
+    else if(choise == '1') {
+        int k = 0;
+        for (int i = 0; i < SIZE; i++) {
+            int s = 0;
+            for (int j = SIZE; j > 0; j--) {
 
                 newImage[k][s] = image[i][j];
-                    s++;
-                        }
-                k++;
-            }saveNewImage();
-        break;
+                s++;
+            }
+            k++;
+        }
+        saveNewImage();
+        exit(0);
     }
-
 }
+
 void invert() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j< SIZE; j++) {
@@ -405,28 +383,28 @@ void invert() {
     }
 }
 void  detect_Image_edges (){
-        int limit =0;
+    int limit =0;
     for (; limit<SIZE; limit++){
         for (int color =0 ; color <SIZE; color++){
-                if (image[limit][color] > avg()) {
-                    image[limit][color] = 255;
-                } else if (image[limit][color] < avg()) {
-                    image[limit][color] = 0;
-                }
+            if (image[limit][color] > avg()) {
+                image[limit][color] = 255;
+            } else if (image[limit][color] < avg()) {
+                image[limit][color] = 0;
             }
         }
+    }
 
-   for(int i =0; i<SIZE; i++){
-       for(int j = 0; j<SIZE; j++){
-           int x = (image[i-1][j]+image[i+1][j]-2*image[i][j]);
-           int y = (image[i][j-1]+image[i][j+1]-2*image[i][j]);
-           if(i-1 >0 || i+1<255 || j-1 >0 || j+1<255 )
-           newImage[i][j] = 255-x-y;
-           else
-           newImage[i][j]= 255;
-       }
-   }
-   saveNewImage();
+    for(int i =0; i<SIZE; i++){
+        for(int j = 0; j<SIZE; j++){
+            int x = (image[i-1][j]+image[i+1][j]-2*image[i][j]);
+            int y = (image[i][j-1]+image[i][j+1]-2*image[i][j]);
+            if(i-1 >0 || i+1<255 || j-1 >0 || j+1<255 )
+                newImage[i][j] = 255-x-y;
+            else
+                newImage[i][j]= 255;
+        }
+    }
+    saveNewImage();
 }
 // blur filter
 void blur_image(){
@@ -467,4 +445,3 @@ void shrink3(){
         }
     }
 }
-

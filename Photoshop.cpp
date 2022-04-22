@@ -38,6 +38,7 @@ void colored();
 void loadRgbImage ();
 void saveRgbImage();
 void saveNewRgbImage ();
+void blur_image();
 int main()
 {
     int filterType;
@@ -59,14 +60,15 @@ void grayScale () {
     loadImage();
     //under this line cout your filters numbers ... the varible "choose" its for the user to pick up filter number
     cout <<"1-black and white \n
-            2-invert image \n 
-            3-merge two images \n  
+            2-invert image \n
+            3-merge two images \n
             4-flip image \n
             5-darken and Lighten Image  \n
             6-mirror image \n
             7-rotate image \n
             8- \n
             9-detect image edges \n
+            12-Blur Image\n
             choose a filter : ";
     cin >> choose;
     switch (choose) {
@@ -95,10 +97,15 @@ void grayScale () {
             chose();
             roto();
         case 8:
-          
+
         case 9:
         detect_Image_edges();
         break;
+        case 12:
+            blur_image();
+            saveImage();
+            break;
+
 
     }
 }
@@ -332,7 +339,7 @@ void chose(){
 }
 void flipImage (){
      int choise;
-    cout<<"1-vertically : \n 
+    cout<<"1-vertically : \n
     2-horizontally :" ;
     cin >> choise;
     switch ( choise)
@@ -341,19 +348,19 @@ void flipImage (){
     int k = 0;
   for (int i = SIZE; i > 0; i--) {
     int s =0;
-     for (int j = 0; j < SIZE; j++) {    
+     for (int j = 0; j < SIZE; j++) {
         newImage[k][s] = image[i][j];
         s++;
        }
      k++;
-   }  saveNewImage();   
+   }  saveNewImage();
         break;
-    
+
     case 2:
 int k = 0;
     for (int i = 0; i < SIZE; i++) {
          int s =0;
-        for (int j = SIZE; j > 0; j--) {    
+        for (int j = SIZE; j > 0; j--) {
 
                 newImage[k][s] = image[i][j];
                     s++;
@@ -362,7 +369,7 @@ int k = 0;
             }saveNewImage();
         break;
     }
-      
+
 }
 void invert() {
     for (int i = 0; i < SIZE; i++) {
@@ -382,7 +389,7 @@ void  detect_Image_edges (){
                 }
             }
         }
-        
+
    for(int i =0; i<SIZE; i++){
        for(int j = 0; j<SIZE; j++){
            int x = (image[i-1][j]+image[i+1][j]-2*image[i][j]);
@@ -394,5 +401,17 @@ void  detect_Image_edges (){
        }
    }
    saveNewImage();
+}
+// blur filter
+void blur_image(){
+    for (int i = 0; i < SIZE; i++) { // loop for every pixel in the image
+        for (int j = 0; j < SIZE; j++) {
+            // take the avg of the surrounding 25 pixel of every pixel and save in the same image.
+            image[i][j] = (image[i][j]+image[i-2][j-2]+image[i-2][j-1]+image[i-2][j]+image[i-2][j+1]+image[i-2][j+2]+image[i-1][j-2]
+                           +image[i-1][j-1]+image[i-1][j]+image[i-1][j+1]+image[i-1][j+2]+image[i][j-2]+image[i][j-1]+image[i][j]+image[i][j+1]
+                           +image[i][j+2]+image[i+1][j-2]+image[i+1][j-1]+image[i+1][j]+image[i+1][j+1]+image[i+1][j+2]+image[i+2][j-2]+image[i+2][j-1]
+                           +image[i+2][j]+image[i+2][j+1]+image[i+2][j+2])/26;
+        }
+    }
 }
 

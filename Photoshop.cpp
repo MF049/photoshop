@@ -23,55 +23,71 @@ void mirror ();
 void black_white();
 void merge();
 void saveNewImage();
+void saveImage2();
 void saveNewImage3();
 void darkenAndLighten();
 void roto();
 void chose();
 void invert();
+void shuffel();
+void enlarge();
 int main()
 {
-   string choose;
+   int choose;
   loadImage();
   //under this line cout your filters numbers ... the varible "choose" its for the user to pick up filter number
-  cout << "1-black and white "<<endl;
-  cout << "2-invert image "<<endl;
-  cout << "3-merge two images "<<endl;
-  cout << "4-rotate image "<<endl;
-  cout << "5-darken and Lighten Image "<<endl;
-  cout << "6-mirror image "<<endl;
+  cout << "1-black and white \n2-invert image \n3-merge two images "<<
+  "\n4-rotate image \n5-darken and Lighten Image \n6-mirror image "<<
+  "\n7-shuffel image \n8-enlagre image"<<endl;
+
   cout << "choose a filter : ";
    cin >> choose;
     switch (choose) {
         // edit this statement with your function number and mention the function inside its case
         case 1:
             black_white();
+            saveImage();
             break;
         case 2:
             invert();
+            saveImage();
             break;
         case 3:
             merge();
             saveNewImage();
+
             break;
         case 4:
+            chose ();
+            roto  ();
+            saveImage();
+            break;
         case 5:
             darkenAndLighten();
             saveNewImage3();
             break;
         case 6:
             mirror();
+            saveImage();
             break;
         case 7:
-            chose ();
-            roto  ();
+            shuffel();
+            saveImage2();
+            break;
+        case 8:
+            enlarge();
+            saveImage2();
+            break;
+
+
 
 
     }
-  saveImage();
+
   return 0;
 }
 
-//_________________________________________
+//_______________
 void loadImage () {
    char imageFileName[100];
 
@@ -84,7 +100,7 @@ void loadImage () {
    readGSBMP(imageFileName, image);
 }
 
-//_________________________________________
+//_______________
 void saveImage () {
    char imageFileName[100];
 
@@ -97,7 +113,7 @@ void saveImage () {
    writeGSBMP(imageFileName, image);
 }
 
-//_________________________________________
+//_______________
 // write your code function under this line pleas
 //and write your names in the top of the program
 void mirror (){
@@ -176,6 +192,17 @@ void saveNewImage(){
     strcat(newImageFileName,".bmp");// to save the new image
     writeGSBMP(newImageFileName,new_image);
 
+}
+void saveImage2 () {
+   char imageFileName[100];
+
+   // Get gray scale image target file name
+   cout << "Enter the target image file name: ";
+   cin >> imageFileName;
+
+   // Add to it .bmp extension and load image
+   strcat (imageFileName, ".bmp");
+   writeGSBMP(imageFileName, image2);
 }
 void saveNewImage3(){
     char newImageFileName3[100];
@@ -256,6 +283,7 @@ chose();
 }
 
 void invert() {
+    int z,y;
   for (int i = 0; i < SIZE; i++) {
     for (int j = 0; j< SIZE; j++) {
 
@@ -286,3 +314,204 @@ image[i][j]=y;
   }
 }
 
+void shuffel() {
+
+    int z1;
+    cout <<"plz enter the first part u want ya user ya habibi: ";
+    cin>>z1;
+
+    if (z1 == 1 ){
+        for (int i = 0; i<128; i++) {
+    for (int j = 0; j<128; j++){
+       image2 [i][j]=image [i][j];
+    }
+    }
+  }
+
+  else if (z1 == 2 ){
+          for (int i = 0; i <128; i++) {
+    for (int j = 127; j<256; j++) {
+  image2 [i][j-127]=image [i][j];
+
+    }
+  }
+
+  }
+   else if (z1 == 3 ){
+
+    for (int i = 127; i <256; i++) {
+    for (int j = 0; j<128; j++) {
+
+    image2 [i-127][j]=image [i][j];
+    }
+  }
+   }
+   else if (z1 == 4 ){
+for (int i = 127; i <256; i++) {
+    for (int j = 127; j<256; j++) {
+   image2 [i-127][j-127]=image [i][j];
+
+    }
+  }
+   }
+
+    int z2 ;
+    cout <<"plz enter the second part : ";
+    cin>>z2;
+
+    if (z2 == 1 ){
+           for (int i = 0; i<128; i++) {
+    for (int j = 0; j<128; j++){
+        image2 [i][j-127]=image [i][j];
+    }
+    }
+  }
+
+  else if (z2 == 2 ){
+            for (int i = 0; i <128; i++) {
+    for (int j = 127; j<256; j++) {
+   image2 [i][j]=image [i][j];
+
+    }
+  }
+
+  }
+   else if (z2 == 3 ){
+
+      for (int i = 127; i <256; i++) {
+    for (int j = 0; j<128; j++) {
+
+   image2 [i-127][j+127]=image [i][j];
+    }
+  }
+   }
+   else if (z2 == 4 ){
+for (int i = 127; i <256; i++) {
+    for (int j = 127; j<256; j++) {
+   image2 [i-127][j]=image [i][j];
+
+    }
+  }
+   }
+
+    int z3 ;
+    cout <<"plz enter the third part : ";
+    cin>>z3;
+
+    if (z3 == 1 ){
+           for (int i = 0; i<128; i++) {
+    for (int j = 0; j<128; j++){
+         image2 [i+127][j]=image [i][j];
+    }
+    }
+  }
+
+  else if (z3 == 2 ){
+             for (int i = 0; i <128; i++) {
+    for (int j = 127; j<256; j++) {
+    image2 [i+127][j-127]=image [i][j];
+    }
+  }
+
+  }
+   else if (z3 == 3 ){
+
+  for (int i = 127; i <256; i++) {
+    for (int j = 0; j<128; j++) {
+
+   image2 [i][j]=image [i][j];
+    }
+  }
+   }
+   else if (z3 == 4 ){
+for (int i = 127; i <256; i++) {
+    for (int j = 127; j<256; j++) {
+   image2 [i][j-127]=image [i][j];
+
+    }
+  }
+   }
+
+    int z4 ;
+    cout <<"plz enter the forth part : ";
+    cin>>z4;
+
+    if (z4 == 1 ){
+         for (int i = 0; i<128; i++) {
+    for (int j = 0; j<128; j++){
+        image2 [i+127][j+127]=image [i][j];
+    }
+    }
+  }
+
+  else if (z4 == 2 ){
+       for (int i = 0; i <128; i++) {
+    for (int j = 127; j<256; j++) {
+   image2 [i+127][j]=image [i][j];
+
+    }
+  }
+
+  }
+   else if (z4 == 3 ){
+
+    for (int i = 127; i <256; i++) {
+    for (int j = 0; j<128; j++) {
+    image2 [i][j+127]=image [i][j];
+    }
+  }
+   }
+   else if (z4 == 4 ){
+for (int i = 127; i <256; i++) {
+    for (int j = 127; j<256; j++) {
+  image2 [i][j]=image [i][j];
+
+    }
+  }
+   }
+
+
+}
+
+void enlarge() {
+
+    int z ;
+    cout <<"plz enter the part u ganna enlarge : ";
+    cin>>z;
+
+    if (z == 1 ){
+        for (int i = 0; i<SIZE; i++) {
+    for (int j = 0; j<SIZE; j++){
+        image2 [i][j]=image [i/2][j/2] ;
+    }
+    }
+  }
+
+  else if (z == 2 ){
+          for (int i = 0; i <SIZE; i++) {
+    for (int j = 0; j<SIZE; j++) {
+  image2 [i][j]=image [i/2][(j/2)+127] ;
+
+    }
+  }
+
+  }
+   else if (z == 3 ){
+
+    for (int i = 0; i <SIZE; i++) {
+    for (int j = 0; j<SIZE; j++) {
+
+  image2 [i][j]=image [(i/2)+127][j/2] ;
+    }
+  }
+   }
+   else if (z == 4 ){
+for (int i = 0; i <SIZE; i++) {
+    for (int j = 0; j<SIZE; j++) {
+  image2 [i][j]=image [(i/2)+127][(j/2)+127] ;
+
+    }
+  }
+   }
+
+}

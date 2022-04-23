@@ -197,28 +197,29 @@ void mirror (){
     }
 }
 double avg(){
+    const int count = 256 * 256 ;
     double sum = 0;
-    int limit =0 ;
+    int lim =0 ;
 //    Nested loop for calculating the required sum
 
-    for (;limit <SIZE; limit++){
+    for (;lim <SIZE; lim++){
         for (int col =0 ; col <SIZE; col++){
-                sum += image[limit][col];
+                sum += image[lim][col];
             }
         }
 
-//    calculating the result of the sum/count
+//    calculating result of the sum/count
     double result = sum/ count ;
     return result;
 }
 void black_white (){
-    int limit =0;
-    for (; limit<SIZE; limit++){
+    int lim =0;
+    for (; lim<SIZE; lim++){
         for (int color =0 ; color <SIZE; color++){
-                if (image[limit][color] > avg()) {
-                    image[limit][color] = 255;
-                } else if (image[limit][color] < avg()) {
-                    image[limit][color] = 0;
+                if (image[lim][color] > avg()) {
+                    image[lim][color] = 255;
+                } else if (image[lim][color] < avg()) {
+                    image[lim][color] = 0;
                 }
             }
         }
@@ -333,7 +334,7 @@ void chose(){
 void flipImage (){
      int choise;
     cout<<"1-vertically : \n 
-    2-horizontally :" ;
+           2-horizontally :" ;
     cin >> choise;
     switch ( choise)
     {
@@ -372,13 +373,13 @@ void invert() {
     }
 }
 void  detect_Image_edges (){
-        int limit =0;
-    for (; limit<SIZE; limit++){
+        int lim =0;
+    for (; lim<SIZE; lim++){
         for (int color =0 ; color <SIZE; color++){
-                if (image[limit][color] > avg()) {
-                    image[limit][color] = 255;
-                } else if (image[limit][color] < avg()) {
-                    image[limit][color] = 0;
+                if (image[lim][color] > avg()) {
+                    image[lim][color] = 255;
+                } else if (image[lim][color] < avg()) {
+                    image[lim][color] = 0;
                 }
             }
         }
